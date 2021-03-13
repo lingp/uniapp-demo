@@ -1,0 +1,1 @@
+<view>我的<uni-load-more vue-id="704e9d00-1" iconType="snow" iconSize="12" status="loading" bind:__l="__l"></uni-load-more></view>
