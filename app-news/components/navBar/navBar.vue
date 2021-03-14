@@ -4,8 +4,19 @@
 			<!-- 状态栏占位，主要是微信小程序是有状态栏的 -->
 			<view :style="{height: statusBarHeight + 'px'}"></view>
 			<!-- 导航栏内容 -->
-			<view class="navbar-content" :style="{height: navBarHeight + 'px', width: navBarWidth + 'px'}">
-				<view class="navbar-search">
+			<view class="navbar-content"  :class="{search: isSearch}" :style="{height: navBarHeight + 'px', width: navBarWidth + 'px'}"  @click.stop="openSearch()">
+				<view v-if="isSearch"  class="narbar-search-icon-back" @click.stop="back()">
+					<uni-icons type="back" size="22" color="#fff"></uni-icons>
+				</view>
+				<view v-if="isSearch" class="navbar-search">
+					<!-- 搜索页显示  -->
+					<input class="navbar-search_text" type="text" placeholder="请输入您要搜索的内容" 
+						v-model="val" 
+						@input="inputChange"
+					/>
+				</view>
+					
+				<view v-if="!isSearch" class="navbar-search">
 					<view class="narbar-search-icon">
 						<uni-icons type="search" size="16" color="#999"></uni-icons>
 					</view>
@@ -22,15 +33,54 @@
 
 <script>
 	export default {
+		props: {
+			isSearch: {
+				type: Boolean,
+				default: false
+			},
+			searchVal: {
+				type: [String, Number],
+				default: '12'
+			},
+			model: {
+				prop: 'searchVal',
+				event: 'change'
+			}
+		},
 		data() {
 			return {
 				statusBarHeight: 20,
 				navBarWidth: 375,
-				navBarHeight: 45
+				navBarHeight: 45,
+				val: ''
+			}
+		},
+		watch:{
+			searchVal(newVal){
+				alert('hello world')
+				this.val = newVal
 			}
 		},
 		methods: {
-			
+			openSearch() {
+				if (this.isSearch) {
+					return;
+				}
+				uni.navigateTo({
+					url: '/pages/search/search'
+				})
+			},
+			back() {
+				uni.switchTab({
+					url:'/pages/index/index'
+				})
+			},
+			inputChange(e) {
+				const {
+					value
+				} = e.detail
+				this.$emit('input', value)
+			}
 		},
 		created() {
 			// 获取手机系统信息
@@ -89,6 +139,20 @@
 					color: #999;
 				}
 			}
+		
+			&.search {
+				padding-left: 0;
+				justify-content: left;
+				.narbar-search-icon-back {
+					margin-left: 10px;
+					margin-right: 10px;
+				}
+				.navbar-search {
+					border-radius: 5px;
+				}
+			}
 		}
+	
+		
 	}
 </style>
