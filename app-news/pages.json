@@ -22,6 +22,14 @@
             }
             
         }
+        ,{
+            "path" : "pages/label/label",
+            "style" :                                                                                    
+            {
+               "navigationBarTitleText": "标签管理"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
