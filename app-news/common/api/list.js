@@ -20,3 +20,17 @@ export const get_search = (data) => {
 		data
 	})
 }
+
+export const get_comments = (data) => {
+	return $http({
+		url: 'get_comments',
+		data
+	})
+}
+
+export const get_detail = (data) => {
+	return $http({
+		url: "get_detail",
+		data
+	})
+}

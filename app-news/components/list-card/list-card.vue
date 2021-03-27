@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view @click="openDetail">
 		<!-- 基础卡片 -->
 		<view v-if="item.mode === 'base'" class="list-card-item">
 			<view class="list-card-item-image">
@@ -91,6 +91,25 @@
 		data() {
 			return {
 			};
+		},
+		methods: {
+			openDetail() {
+				const item = this.item
+				this.$emit('click', item)
+				const params = {
+					_id:item._id,
+					title:item.title,
+					author:item.author,
+					create_time:item.create_time,
+					thumbs_up_count:item.thumbs_up_count,
+					browse_count:item.browse_count
+				}
+				console.log('打开详情页面',params);
+				// 传参注意长度
+				uni.navigateTo({
+					url:'/pages/detail/detail?params='+JSON.stringify(params)
+				})
+			}
 		}
 	}
 </script>

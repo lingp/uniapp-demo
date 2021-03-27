@@ -67,4 +67,21 @@
   font-size: 14px;
   color: #999;
 }
+.navbar .navbar-content.search {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  padding-left: 0;
+  -webkit-box-pack: left;
+  -webkit-justify-content: left;
+          justify-content: left;
+}
+.navbar .navbar-content.search .narbar-search-icon-back {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.navbar .navbar-content.search .navbar-search {
+  border-radius: 5px;
+}
 

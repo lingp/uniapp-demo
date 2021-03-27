@@ -8,6 +8,7 @@
 				<view v-if="isSearch"  class="narbar-search-icon-back" @click.stop="back()">
 					<uni-icons type="back" size="22" color="#fff"></uni-icons>
 				</view>
+				
 				<view v-if="isSearch" class="navbar-search">
 					<!-- 搜索页显示  -->
 					<input class="navbar-search_text" type="text" placeholder="请输入您要搜索的内容" 
@@ -15,7 +16,7 @@
 						@input="inputChange"
 					/>
 				</view>
-					
+				
 				<view v-if="!isSearch" class="navbar-search">
 					<view class="narbar-search-icon">
 						<uni-icons type="search" size="16" color="#999"></uni-icons>
@@ -141,6 +142,7 @@
 			}
 		
 			&.search {
+				flex-direction: row;
 				padding-left: 0;
 				justify-content: left;
 				.narbar-search-icon-back {

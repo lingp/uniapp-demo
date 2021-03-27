@@ -2,7 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/follow/follow",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/search/search",
+    "pages/label/label",
+    "pages/detail/detail"
   ],
   "subPackages": [],
   "window": {
@@ -37,6 +40,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap34.json"
+  "usingComponents": {}
 }
