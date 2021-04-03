@@ -10,7 +10,7 @@
 					<text>
 						{{item.title}}
 					</text>
-					<likes :item="item"></likes>
+					<likes :item="item" :isIndex="isIndex"></likes>
 				</view>
 				<view class="list-card-item-content-desc">
 					<view class="list-card-item-content-desc-icon">
@@ -30,7 +30,7 @@
 					<text>
 						{{item.title}}
 					</text>
-					<likes :item="item"></likes>
+					<likes :item="item" :isIndex="isIndex"></likes>
 				</view>
 				<view class="list-card-item-image">
 					<view class="list-card-item-image-item" v-if="index < 3" v-for="(item,index) in item.cover" :key="index">
@@ -58,7 +58,7 @@
 					<text>
 						<text>{{item.title}}</text>
 					</text>
-					<likes :item="item"></likes>
+					<likes :item="item" :isIndex="isIndex"></likes>
 				</view>
 				
 				<view class="list-card-item-content-desc">
@@ -86,6 +86,10 @@
 			mode: {
 				type: String,
 				default: 'base'
+			},
+			isIndex: { // 判断是否是在首页文章列表点击
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {

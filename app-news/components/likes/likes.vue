@@ -1,5 +1,5 @@
 <template>
-	<view class="icons-heart" @click="likeTap">
+	<view class="icons-heart" @click.stop="likeTap">
 		<uni-icons size="20" color="#f07373" type="heart" :type="like?'heart-filled':'heart'"></uni-icons>
 	</view>
 </template>
@@ -12,6 +12,10 @@
 				default () {
 					return {}
 				}
+			},
+			isIndex: { // 判断是否是在首页文章列表点击
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -34,6 +38,7 @@
 				console.log('收藏成功');
 			},
 			setUpdateLikes() {
+				let _this = this
 				uni.showLoading()
 				this.$api.update_like({
 					user_id: '60234e2bef338d00018925ae', // TODO
@@ -45,7 +50,10 @@
 						icon:'none'
 					})
 					console.log(res);
-					
+					console.log('is_index', _this.isIndex)
+					uni.$emit('set_update_like', {
+						'is_index' : _this.isIndex
+					})
 				}).catch(()=>{
 					uni.hideLoading()
 				})

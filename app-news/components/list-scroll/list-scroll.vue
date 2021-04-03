@@ -9,6 +9,12 @@
 
 <script>
 	export default {
+		props:{
+			isFollow : {
+				type: Boolean,
+				default: false // 关注页面，因为有默认的标题栏，高度要自己减掉
+			},
+		},
 		data() {
 			return {
 				scrollHeight: '',
@@ -30,6 +36,10 @@
 			  // 剪掉 节点离页面顶部的距离 + tabBar的高度（固定的，详见下面链接）
 			  // https://uniapp.dcloud.io/frame?id=%E5%9B%BA%E5%AE%9A%E5%80%BC
 			  let scrollHeight = screenHeight - data.top - 50
+			  console.log('scrollHeight', scrollHeight)
+			  if (this.isFollow)  {
+				  scrollHeight = scrollHeight - 50; // 标题栏
+			  }
 			  that.$data.scrollHeight = scrollHeight
 			}).exec();
 		},

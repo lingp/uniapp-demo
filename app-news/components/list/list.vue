@@ -1,7 +1,7 @@
 <template>
 	<swiper class="home-swiper" :current="activeIndex" @change="change">
 		<swiper-item class="home-swiper-item" v-for="(item, index) in tabList" :key="index">
-			<list-item :list="list[index]" :load="load[index]" @loadmore="loadmore"></list-item>
+			<list-item :isIndex='true' :list="list[index]" :load="load[index]" @loadmore="loadmore"></list-item>
 		</swiper-item>
 	</swiper>
 </template>
@@ -41,7 +41,20 @@
 		created() {
 			// this.list = {}
 			// this.load = {}
-			this.getList(0) // TODO
+			// this.getList(0) // TODO
+			let _this = this
+			uni.$on('set_update_like', function(data) {
+				if (data.is_index) {
+					return;
+				}
+				console.log(data)
+				console.log('list2', 'set_update_like')
+				_this.list = {}
+				_this.load = {}
+				_this.getList(_this.activeIndex)
+			})
+			
+			this.getList(0)
 		},
 		methods: {
 			loadmore() {
